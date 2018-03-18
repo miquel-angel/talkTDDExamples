@@ -4,6 +4,9 @@
     "require-dev": {
         "phpunit/phpunit": "^7.0"
     },
+    "config": {
+        "bin-dir": "bin/"
+    },
     "require": {},
     "autoload": {
         "psr-0": {
