@@ -7,26 +7,45 @@ use TddExamples\MarsRoversKata\MarsRovers;
 class MarsRoversTest extends TestCase
 {
     /**
-     * @test
+     * @var MarsRovers
      */
-    public function whenWeNotPassAnyCommandShouldBeInInitialPosition()
+    private $marsRovers;
+
+    protected function setUp()
     {
-        // Arrange
         $originalPosition = [
             'x' => 0,
             'y' => 0,
             'direction' => 'N'
         ];
-        $expectedPosition = $originalPosition;
         $map = [];
-        $marsRovers = new MarsRovers($originalPosition, $map);
+
+        $this->marsRovers = new MarsRovers($originalPosition, $map);
+    }
+
+    protected function tearDown()
+    {
+        $this->marsRovers = null;
+    }
+
+    /**
+     * @test
+     */
+    public function whenWeNotPassAnyCommandShouldBeInInitialPosition()
+    {
+        // Arrange
+        $expectedPosition = [
+            'x' => 0,
+            'y' => 0,
+            'direction' => 'N'
+        ];
 
         // Act
-        $status = $marsRovers->move('');
+        $status = $this->marsRovers->move('');
 
         // Assert
-        $this->assertSame($expectedPosition, $marsRovers->getCurrentPosition());
-        $this->assertTrue($status, 'If the mars rovers doesn\'t find any obstacle, should return true');
+        $this->assertSame($expectedPosition, $this->marsRovers->getCurrentPosition());
+        $this->assertMarsRoversHasNotColisioned($status);
     }
 
     /**
@@ -35,26 +54,19 @@ class MarsRoversTest extends TestCase
     public function whenWeJustTurnRightShouldHasEastDirection()
     {
         // Arrange
-        $originalPosition = [
-            'x' => 0,
-            'y' => 0,
-            'direction' => 'N'
-        ];
         $expectedPosition = [
             'x' => 0,
             'y' => 0,
             'direction' => 'E'
         ];
-        $map = [];
-        $marsRovers = new MarsRovers($originalPosition, $map);
         $commands = 'R';
 
         // Act
-        $status = $marsRovers->move($commands);
+        $status = $this->marsRovers->move($commands);
 
         // Assert
-        $this->assertSame($expectedPosition, $marsRovers->getCurrentPosition());
-        $this->assertTrue($status, 'If the mars rovers doesn\'t find any obstacle, should return true');
+        $this->assertSame($expectedPosition, $this->marsRovers->getCurrentPosition());
+        $this->assertMarsRoversHasNotColisioned($status);
     }
 
     /**
@@ -63,25 +75,23 @@ class MarsRoversTest extends TestCase
     public function whenWeJustTurnLeftShouldHasWestDirection()
     {
         // Arrange
-        $originalPosition = [
-            'x' => 0,
-            'y' => 0,
-            'direction' => 'N'
-        ];
         $expectedPosition = [
             'x' => 0,
             'y' => 0,
             'direction' => 'W'
         ];
-        $map = [];
-        $marsRovers = new MarsRovers($originalPosition, $map);
         $commands = 'L';
 
         // Act
-        $status = $marsRovers->move($commands);
+        $status = $this->marsRovers->move($commands);
 
         // Assert
-        $this->assertSame($expectedPosition, $marsRovers->getCurrentPosition());
+        $this->assertSame($expectedPosition, $this->marsRovers->getCurrentPosition());
+        $this->assertMarsRoversHasNotColisioned($status);
+    }
+
+    private function assertMarsRoversHasNotColisioned($status)
+    {
         $this->assertTrue($status, 'If the mars rovers doesn\'t find any obstacle, should return true');
     }
 }
