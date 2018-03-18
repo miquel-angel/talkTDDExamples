@@ -14,6 +14,10 @@ class MarsRovers
 
     public function move(string $commands): bool
     {
+        if ($commands === 'R') {
+            $this->originalPosition['direction'] = 'E';
+        }
+        
         return true;
     }
 
