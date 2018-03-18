@@ -16,8 +16,10 @@ class MarsRovers
     {
         if ($commands === 'R') {
             $this->originalPosition['direction'] = 'E';
+        } elseif ($commands === 'L') {
+            $this->originalPosition['direction'] = 'W';
         }
-        
+
         return true;
     }
 
