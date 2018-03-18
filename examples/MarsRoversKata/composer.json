@@ -10,7 +10,7 @@
     "require": {},
     "autoload": {
         "psr-0": {
-            "tdd-examples\\mars-rovers-kata": "src"
+            "TddExamples": "src"
         }
     }
 }
