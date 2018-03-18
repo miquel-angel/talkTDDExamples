@@ -2,6 +2,7 @@
 namespace Test\TddExamples\MarsRoversKata;
 
 use PHPUnit\Framework\TestCase;
+use TddExamples\MarsRoversKata\MarsRovers;
 
 class MarsRoversTest extends TestCase
 {
