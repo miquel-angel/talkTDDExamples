@@ -1,0 +1,16 @@
+{
+  "name": "tdd-examples/calculator",
+  "description": "Simple exercise to practice TDD",
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "require": {},
+  "autoload": {
+    "psr-0": {
+      "TddExamples": "src"
+    }
+  }
+}
